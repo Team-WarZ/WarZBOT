@@ -10,8 +10,8 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/LEGEND-OS/LEGENDBOT/",
-  "website": "https://github.com/LEGEND-OS/LEGENDBOT/",
+  "repository": "https://github.com/Team-WarZ/WarZBOT/",
+  "website": "https://github.com/Team-WarZ/WarZBOT/",
   "success_url": "https://t.me/WarZSupport",
   "env": {
     "ENV": {
