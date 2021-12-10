@@ -1,0 +1,48 @@
+
+
+_get_repolink () {
+    local regex
+    regex='(https?)://github.com/.+/.+'
+    if [[ $WarZ_REPO == "WarZBot" ]]
+    then
+        echo "aHR0cHM6Ly9naXRodWIuY29tL1RlYW0tV2FyWi9XYXJaQk9UL2FyY2hpdmUvV2FyWkJvdC56aXA=" | base64 -d
+    elif [[ $WarZ_REPO == "WarZBot" ]]
+    then
+        echo "aHR0cHM6Ly9naXRodWIuY29tL1RlYW0tV2FyWi9XYXJaQk9UL2FyY2hpdmUvV2FyWkJvdC56aXA=" | base64 -d
+    elif [[ $WarZ_REPO =~ $regex ]]
+    then
+        if [[ $WarZ_REPO_BRANCH ]]
+        then
+            echo "${WarZ_REPO}/archive/${WarZ_REPO_BRANCH}.zip"
+        else
+            echo "${WarZ_REPO}/archive/master.zip"
+        fi
+    else
+        echo "aHR0cHM6Ly9naXRodWIuY29tL1RlYW0tV2FyWi9XYXJaQk9UL2FyY2hpdmUvV2FyWkJvdC56aXA=" | base64 -d
+    fi
+}
+
+
+_setting_bot () {
+    local zippath
+    zippath="WarZBot.zip"
+    echo "  Downloading ᭙ꪖ᥅ƺẞø† V3.O Source Code..."
+    wget -q $(_get_repolink) -O "$zippath"
+    echo "  Unpacking Data ..."
+    WarZPATH=$(zipinfo -1 "$zippath" | grep -v "/.");
+    unzip -qq "$zippath"
+    echo "Done"
+    echo "  WarZBot V3.O Cleaning.."
+    rm -rf "$zippath"
+    sleep 5
+    cd $WarZPATH
+    echo "    ⚜️Starting ᭙ꪖ᥅ƺẞø†⚜️     "
+    echo "
+    🇮🇳🇮🇳🇮🇳🇮🇳🇮🇳🇮🇳🇮🇳🇮🇳🇮🇳🇮🇳
+    "
+
+    python3 ../setup/updater.py ../requirements.txt requirements.txt
+    python3 -m userbot
+}
+
+_setting_bot
